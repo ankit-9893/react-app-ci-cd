@@ -8,5 +8,16 @@ before_install:
 script:
   - docker run -e CI=true ankit/react-app-ci-cd npm run test
 
+deploy:
+  provider: elasticbeanstalk
+  region: "IND/Mumbai"
+  app: "docker"
+  env: "Docker-env"
+  bucket_name: "s3bucket name"
+  bucket_path: "docker"
+  on:
+    branch: main
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: "$AWS_SECRET_KEY"
 # language: generic 
 
